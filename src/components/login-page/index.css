@@ -1,0 +1,47 @@
+.login-page{
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr 100px;
+}
+.login-body {
+    display: grid;
+    grid-template-columns: 1fr 600px 1fr;
+    padding: 100px 0 0 0;
+}
+
+.login-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 750px;
+}
+.login-illustration{
+    height: 1700px;
+
+    position: absolute;
+    left: 0;
+    right:0;
+    top:40%;
+    bottom: 0;
+    margin: auto;
+}
+.login-body__image{
+    position: relative;
+
+    flex-grow: 1;
+    overflow: hidden;
+}
+.login-foot{
+    gap: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-foot>p{
+    margin: 0;
+}
+.login-title{
+    font-size: 48px;
+    text-align: right;
+    padding: 100px 0;
+}

@@ -1,0 +1,10 @@
+.login-content__form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+
+}
+.login-form__checkbox {
+    margin-right: 10px;
+}

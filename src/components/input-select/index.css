@@ -1,0 +1,32 @@
+.input-select-wrap{
+    max-height: 40px;
+    height: 40px;
+}
+.input-container-select{
+    width: 240px;
+    cursor: pointer;
+    border: 1px solid white;
+    border-radius: 6px;
+    background-color: var(--dark-back);
+    padding: 0 4px;
+}
+
+.input-select-list>p{
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.input-select{
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+.input-select .arrow{
+    margin-bottom: 4px;
+    margin-right: 10px;
+}
+.input-select-title{
+    flex-grow: 1;
+    margin: 0;
+    font-size: 14px;
+}
