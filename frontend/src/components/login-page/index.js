@@ -4,11 +4,19 @@ import GirlImage from "./../../assets/images/girl-06.svg";
 import InputSelect from "../input-select";
 import {useState} from "react";
 import LoginPageForm from "../login-page-form";
+import authService from "../../assets/js/auth-service";
 
 export default function LoginPage() {
 	
-	function handleTelegramResponse(...a) {
-		console.log(a);
+	function handleTelegramResponse(a) {
+		return authService.telegramAuth(a)
+		.then(res => {
+			console.log(res);
+			// document.location.replace('/');
+		})
+		.catch(err => {
+			console.log(err);
+		})
 	}
 	
 	const languages = {

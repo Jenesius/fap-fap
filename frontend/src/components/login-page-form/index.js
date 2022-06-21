@@ -22,7 +22,7 @@ export default function LoginPageForm({handleRequest}) {
 				Я согласен со всеми правилами.
 			</label>
 			<div className= {`${acceptRules?'' : 'login-content__button_disabled'}`}>
-				<TelegramLoginButton dataAuthUrl= "/callback" botName="faptest_bot" />
+				<TelegramLoginButton  dataOnauth = {handleRequest} botName="faptest_bot" />
 			</div>
 		</div>
 	)

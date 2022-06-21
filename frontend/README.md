@@ -1,3 +1,7 @@
+# Design
+Design was provided by following [link](https://www.figma.com/file/AI9dgZ8c2Fv1qVxhDM9b7b/Fap-Fap).
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
