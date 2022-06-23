@@ -6,9 +6,9 @@
     width: 240px;
     cursor: pointer;
     border: 1px solid white;
-    border-radius: 6px;
+    border-radius: 20px;
     background-color: var(--dark-back);
-    padding: 0 4px;
+    padding: 0 4px 0 15px;
 }
 
 .input-select-list>p{
@@ -29,4 +29,8 @@
     flex-grow: 1;
     margin: 0;
     font-size: 14px;
+}
+.input-select_active{
+    position: relative;
+    z-index: 1;
 }

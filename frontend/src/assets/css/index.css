@@ -69,3 +69,12 @@ body{
 
     z-index: 2;
 }
+
+.text_md{
+    font-size: 16px;
+    line-height: 22px;
+}
+.text_sm{
+    font-size: 14px;
+    line-height: 20px;
+}

@@ -1,15 +1,20 @@
 import './App.css';
 import LoginPage from "./components/login-page";
+import Profile from "./components/profile";
 import "./assets/css/index.css";
-import authService from "./assets/js/auth-service";
+import {Route, Routes} from "react-router-dom";
+import GamePage from "./components/game-page";
 
-window.check = authService.checkAuth;
-window.testAuth = authService.testAuth;
+
 
 function App() {
   return (
       <div className = "app-content">
-        <LoginPage/>
+          <Routes>
+              <Route path = "/auth" element={<LoginPage/>}/>
+              <Route path = "/profile" element={<Profile/>}/>
+              <Route path = "/game" element={<GamePage/>}/>
+          </Routes>
       </div>
   );
 }

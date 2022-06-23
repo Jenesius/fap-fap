@@ -1,6 +1,9 @@
 import "./index.css"
-import {useEffect, useState} from "react";
+import {useEffect, useState, useRef} from "react";
+import clickOutside from "../../assets/js/click-outside";
 export default function InputSelect({options, value, setValue}) {
+	
+	const wrapperRef = useRef(null);
 	
 	const [languageTitle, setLanguageTitle] = useState('');
 	
@@ -11,8 +14,33 @@ export default function InputSelect({options, value, setValue}) {
 		setLanguageTitle(title)
 	}, [options, value]);
 	
+	function selectAndClose(v) {
+		setValue(v);
+		setActive(false);
+	}
+	
+
+	
+	useEffect(() => {
+		
+		console.log( wrapperRef.current.getBoundingClientRect());
+		
+		let offOutsideClick = null;
+		if (active) offOutsideClick = clickOutside(wrapperRef.current, setActive.bind(null, false));
+		else offOutsideClick?.();
+		
+		return () => {
+			offOutsideClick?.();
+		}
+		
+	}, [active]);
+	
+	
 	return (
-		<div className= "input-select-wrap">
+		<div
+			ref={wrapperRef}
+			className = {'input-select-wrap ' + ( active? 'input-select_active': '')}
+		>
 			<div className = "input-container-select">
 				<div className = "input-select" onClick={() => setActive(!active)}>
 					<p className= "input-select-title text-color_default">{languageTitle}</p>
@@ -27,13 +55,11 @@ export default function InputSelect({options, value, setValue}) {
 						<div className = "input-select-list">
 							{
 								Object.entries(options).map(([value, title]) =>
-									(
-										<p
-											className = "text-color_default"
-											key = {value}
-											onClick = {() => setValue(value)}
-										>{title}</p>
-									)
+									<p
+										className = "text-color_default"
+										key = {value}
+										onClick = {() => selectAndClose(value)}
+									>{title}</p>
 								)
 							}
 						</div>

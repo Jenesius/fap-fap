@@ -1,0 +1,10 @@
+.page-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 30px;
+}
+
+.page-header__link-label{
+    color: var(--text);
+
+}
