@@ -23,7 +23,12 @@ export default function InputSelect({options, value, setValue}) {
 	
 	useEffect(() => {
 		
-		// console.log( wrapperRef.current.getBoundingClientRect());
+
+		if (wrapperRef.current.getBoundingClientRect().top > document.body.clientHeight / 2) {
+			console.log('Вверх')
+		} else {
+			console.log('Вниз')
+		}
 		
 		let offOutsideClick = null;
 		if (active) offOutsideClick = clickOutside(wrapperRef.current, setActive.bind(null, false));

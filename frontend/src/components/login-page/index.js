@@ -5,6 +5,7 @@ import InputSelect from "../input-select";
 import {useState} from "react";
 import LoginPageForm from "../login-page-form";
 import authService from "../../assets/js/auth-service";
+import InputLanguage from "../input-language";
 
 export default function LoginPage() {
 	
@@ -18,11 +19,7 @@ export default function LoginPage() {
 			console.log(err);
 		})
 	}
-	
-	const languages = {
-		ru: 'Русский',
-		en: 'English'
-	}
+
 	
 	const [language, setLanguage] = useState('ru');
 	
@@ -43,7 +40,7 @@ export default function LoginPage() {
 				
 			</div>
 			<div className = "login-foot">
-				<InputSelect options={languages} value={language} setValue={setLanguage}/>
+				<InputLanguage value={language} setValue={setLanguage}/>
 				<p className = "text-color_default">Правила</p>
 				<p className = "text-color_default">О Нас</p>
 			</div>

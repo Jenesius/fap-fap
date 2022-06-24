@@ -5,22 +5,13 @@ import {useState} from "react";
 import InputLanguage from "../input-language";
 import WidgetTelegramConnect from "../widget-telegram-connect";
 import DataService from "../../assets/js/data-service";
+import {orientationValues, sexValues} from "../../assets/js/application-config";
 
 export default function Profile() {
 	
-	const arraySex = {
-		man: "Мужчина",
-		woman: "Женщина"
-	}
-	const arrayOrientation = {
-		1: 'Гетеро'
-	}
-	
-	
 	const [state, setState] = useState({})
 	function handleChanges(name, value) {
-		setState({
-			...state,
+		setState({...state,
 			[name]: value
 		})
 		DataService.updateData('profile', {
@@ -33,19 +24,19 @@ export default function Profile() {
 	
 	return (
 		<Page link = "/auth">
-			<FormSection label = "Пол">
-				<InputSelect value = {state['sex']} options={arraySex}
+			<FormSection label = "Sex">
+				<InputSelect value = {state['sex']} options={sexValues}
 							 setValue={wrapHandleChanges('sex')}
 				/>
 			</FormSection>
 			
-			<FormSection label = "Ориентация">
-				<InputSelect value={state['orientation']} options={arrayOrientation}
+			<FormSection label = "Orientation">
+				<InputSelect value={state['orientation']} options={orientationValues}
 					setValue={wrapHandleChanges('orientation')}
 				/>
 			</FormSection>
 			
-			<FormSection label = "Местоположение">
+			<FormSection label = "Location">
 				<p className="text-color_light">г. Могилёв</p>
 			</FormSection>
 			
@@ -53,10 +44,9 @@ export default function Profile() {
 				<WidgetTelegramConnect telegramId={111111} telegramName= {"Jenesius"}/>
 			</FormSection>
 			
-			<FormSection label = "Язык">
+			<FormSection label = "Language">
 				<InputLanguage value={state['language']} setValue={wrapHandleChanges('language')}/>
 			</FormSection>
-			<p className= "text-color_light">{JSON.stringify(state)}</p>
 		</Page>
 	)
 }

@@ -1,14 +1,10 @@
 import InputSelect from "../input-select";
+import {languageValues} from "../../assets/js/application-config";
 
 export default function InputLanguage(props) {
-	const languages = {
-		ru: 'Русский',
-		en: 'English'
-	}
-	
 	return (
 		<InputSelect
-			options = {languages}
+			options = {languageValues}
 			{...props}
 		/>
 	)
