@@ -23,7 +23,7 @@ export default function InputSelect({options, value, setValue}) {
 	
 	useEffect(() => {
 		
-		console.log( wrapperRef.current.getBoundingClientRect());
+		// console.log( wrapperRef.current.getBoundingClientRect());
 		
 		let offOutsideClick = null;
 		if (active) offOutsideClick = clickOutside(wrapperRef.current, setActive.bind(null, false));

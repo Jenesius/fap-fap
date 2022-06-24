@@ -1,0 +1,11 @@
+.telegram-connect {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.telegram-user-name{
+    margin: 0;
+}
+.telegram-user-id{
+    margin: 5px 0 0 0;
+}

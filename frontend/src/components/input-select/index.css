@@ -14,6 +14,8 @@
 .input-select-list>p{
     cursor: pointer;
     font-size: 14px;
+    margin: 0;
+    padding: 10px 0;
 }
 
 .input-select{
