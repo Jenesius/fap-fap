@@ -1,5 +1,7 @@
 import User from "../models/user-model";
 import tokenService from "./token-service";
+import {isValidObjectId} from "mongoose";
+import DataError from "../errors/data-error";
 
 export default class userService{
 	static findUserByTelegramId(telegramId: number) {
@@ -30,19 +32,27 @@ export default class userService{
 		
 	}
 	static async getShortUserData(userId: string) {
-		return User.findOne({
-			id: userId
+		
+		if (!isValidObjectId(userId)) throw DataError.wrongId();
+		
+		const data = await User.findOne({
+			_id: userId
 		}, {
 			id: 1,
 		})
+		
+		if (!data) throw DataError.objectNotFoundWithId(userId);
+		
+		return data;
 	}
 	
 	static async getUserData(userId: string) {
-		return User.findOne({
-			id: userId
-		}, {
+		if (!isValidObjectId(userId)) throw DataError.wrongId();
+		
+		return User.findById(userId, {
 			id: 1,
-			name: 1
+			name: 1,
+			telegramId: 1
 		})
 	}
 	

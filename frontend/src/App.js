@@ -6,7 +6,6 @@ import {Route, Routes} from "react-router-dom";
 import GamePage from "./components/game-page";
 
 
-
 function App() {
   return (
       <div className = "app-content">

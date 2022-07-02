@@ -1,6 +1,5 @@
 import {Response, Request, NextFunction} from "express";
 import authService from "../services/auth-service";
-import setCookies from "../utils/set-cookies";
 
 export default class AuthController {
 	
@@ -8,7 +7,11 @@ export default class AuthController {
 		try {
 			// add body parser
 			const result = await authService.telegramAuth(req.body);
-			setCookies(res, result.tokens);
+			
+			req.session.userId = result.userId;
+			req.session.accessToken = result.tokens.accessToken;
+			req.session.refreshToken = result.tokens.refreshToken;
+			
 			res.json(result)
 		} catch (e) {
 			next(e);

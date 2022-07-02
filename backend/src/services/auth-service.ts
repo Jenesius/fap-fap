@@ -23,7 +23,8 @@ export default class authService {
 		const tokens =  await userService.updateTokens(user.id);
 		
 		return {
-			tokens
+			tokens,
+			userId: user.id
 		}
 	}
 

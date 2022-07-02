@@ -1,9 +1,8 @@
 import {NextFunction, Request, Response} from "express";
-import {Error} from "mongoose";
+import AuthError from "../errors/auth-error";
 
 export default function (req: Request, res: Response, next: NextFunction) {
-	console.log(req.cookies['accessToken'])
-	if (req.cookies['accessToken']) next();
+	if (req.session['userId']) return next();
 	
-	next(new Error('t'));
+	next(AuthError.unauthorizedAccessApi());
 }
