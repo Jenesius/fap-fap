@@ -8,7 +8,7 @@ export default class userService{
 		}).exec()
 	}
 	
-	static async createUser(userData: UserCreateData) {
+	static async createUser(userData: ICreateUserData) {
 		const user = new User(userData);
 		await user.save()
 		return user;
@@ -29,8 +29,26 @@ export default class userService{
 		return tokens;
 		
 	}
+	static async getShortUserData(userId: string) {
+		return User.findOne({
+			id: userId
+		}, {
+			id: 1,
+		})
+	}
+	
+	static async getUserData(userId: string) {
+		return User.findOne({
+			id: userId
+		}, {
+			id: 1,
+			name: 1
+		})
+	}
+	
 }
 
-interface UserCreateData {
+
+interface ICreateUserData {
 	telegramId?: number
 }

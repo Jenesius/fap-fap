@@ -8,5 +8,35 @@ export default class tokenService{
 		return {accessToken, refreshToken};
 	}
 
+	/**
+	 * @description Generation token of data. Using to provide access to read some
+	 * data.
+	 */
+	static generateTokenData(payload: any, expiresIn: string = '1m') {
+		return jwt.sign(payload, '123', {expiresIn});
+	}
 	
+	static verifyTokenData(token: string) {
+		
+		try {
+			const payload = jwt.verify(token, '123');
+			return payload
+		} catch(err) {
+			return false;
+		}
+
+	}
+	/**
+	 * Проверка decode данных на свежесть.
+	 * @return true if decode data is expired
+	 * */
+	static isExpired(decode: any) {
+		if (!decode || typeof decode === 'string') throw new Error('Wrong payload data.');
+		
+		const {exp} = decode;
+		
+		if (!exp) return true;
+		
+		return Date.now() >= exp * 1000;
+	}
 }
