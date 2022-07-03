@@ -10,5 +10,5 @@ const schema = new Schema<GameMatch>({
 	userY: {type: String, required: true},
 })
 
-const GameMatch = model<GameMatch>('game-previous-match', schema);
+const GameMatch = model<GameMatch>('game-match', schema);
 export default GameMatch;

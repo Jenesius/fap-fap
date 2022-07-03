@@ -18,10 +18,9 @@ export default ((io: Namespace) => {
 			const freeUser = await gameService.findFree(userId)
 			
 			if (!freeUser) return;
-			
-			
-			
-			console.log(freeUser);
+
+			//gameService.matchUsers(userId, freeUser.userId);
+
 		})
 		
 		socket.on('disconnect', () => {
