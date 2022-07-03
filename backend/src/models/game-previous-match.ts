@@ -9,7 +9,7 @@ interface GamePreviousMatch extends Document{
 const schema = new Schema<GamePreviousMatch>({
 	userX: {type: String, required: true},
 	userY: {type: String, required: true},
-	createdAt: { type: Date, expires: 3600 }
+	createdAt : { type : Date, default: Date.now }
 })
 
 const GamePreviousMatch = model<GamePreviousMatch>('game-previous-match', schema);

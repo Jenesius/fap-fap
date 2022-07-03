@@ -11,8 +11,9 @@ TestRoute.get('/add-user', async (req, res) => {
     res.json(await gameService.addUser(String(Math.ceil(Math.random() * 100))));
 })
 TestRoute.get('/new-match', async (req, res) => {
-
     const userId = String(req.query.userId);
+
+    await gameService.closeMatch(userId);
 
     const freeUser = await gameService.findFree(userId);
     if (!freeUser) {

@@ -1,5 +1,6 @@
 import GameUser from "../models/game-user-model";
 import GameMatch from "../models/game-match";
+import GamePreviousMatch from "../models/game-previous-match";
 
 export default class gameService {
 	
@@ -20,6 +21,27 @@ export default class gameService {
 			userX, userY
 		})
 		return await gameUserMatch.save();
+	}
+
+	/**
+	 * @description Find the active match, delete it and crate new document on collection game-previous-match.
+	 * */
+	static async closeMatch(userId: string) {
+
+		const match = await GameMatch.findOneAndDelete({
+			$or: [
+				{ userX: userId },
+				{ userY: userId }
+			]
+		});
+
+		if (!match) return false;
+
+		const gamePreviousMatch = new GamePreviousMatch({
+			userX: match.userX,
+			userY: match.userY,
+		})
+		return gamePreviousMatch.save();
 	}
 
 	/**
@@ -62,9 +84,50 @@ export default class gameService {
 				}
 			},
 			{
+				$lookup: {
+					from: 'game-previous-matches',
+					let : {
+						currentUserId: "$userId"
+					},
+					pipeline: [
+						{
+							$match: {
+								$expr: {
+									$or: [
+										{ $eq: ["$userX", "$$currentUserId"]},
+										{ $eq: ["$userY", "$$currentUserId"]}
+									]
+								},
+							}
+						},
+						{
+							$project: {
+								"userX": 1,
+								"userY": 1,
+								"createdAt": 1,
+								diff: {
+									$subtract: ["$$NOW","$createdAt"]
+								}
+							}
+						},
+						{
+							$match: {
+								diff: {
+									$lt: 1000 * 60 * ( Number(process.env.TIMEOUT_MINUTES_MATCH) || 1)
+								}
+							}
+						}
+					],
+					as: 'previousMatches'
+				}
+			},
+			{
 				$match: {
 					$expr: {
-						$eq: [ { $size: "$result" }, 0 ]
+						$and: [
+							{ $eq: [ { $size: "$result" }, 0 ] },
+							{ $eq: [ { $size: "$previousMatches" }, 0 ] }
+						]
 					},
 					userId: {
 						$ne: userId
@@ -78,8 +141,6 @@ export default class gameService {
 				$project: {
 					userId: 1,
 					_id: 0,
-					result: 1
-
 				}
 			}
 		]).exec().then(arr => arr[0])
