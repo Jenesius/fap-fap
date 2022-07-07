@@ -1,12 +1,15 @@
 import GameUser from "../models/game-user-model";
 import GameMatch from "../models/game-match";
 import GamePreviousMatch from "../models/game-previous-match";
+import gameMatch from "../models/game-match";
+import GameError from "../errors/game-error";
 
 export default class gameService {
 	
-	static async addUser(userId: string) {
+	static async addUser(userId: string, socketId: string) {
 		const gameUser = new GameUser({
 			userId,
+			socketId
 		})
 		await gameUser.save();
 	}
@@ -17,10 +20,21 @@ export default class gameService {
 	}
 
 	static async matchUsers(userX: string, userY: string) {
-		const gameUserMatch = new GameMatch({
+		const gameMatch = new GameMatch({
 			userX, userY
 		})
-		return await gameUserMatch.save();
+		return await gameMatch.save();
+	}
+
+	/**
+	 * @return {String} socketId. ID of /game namespace
+	 */
+	static async getSocketIdByUserId(userId: string): Promise<string> {
+		const gameUser = await GameUser.findOne({userId});
+
+		if (!gameUser) throw GameError.UserWithIdNotFounded(userId, 'game-user');
+
+		return gameUser.socketId;
 	}
 
 	/**

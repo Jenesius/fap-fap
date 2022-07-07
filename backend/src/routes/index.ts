@@ -11,12 +11,12 @@ import TestRoute from "./test-route";
 export default function useRoute(server: Express) {
 	server.use(cors({
 		credentials: true,
-		origin: 'http://jenesius.com',
+		origin: 'http://localhost',
 	}))
 	server.use(bodyParser.json())
 	server.use(cookieParser());
 	server.use(sessionMiddleware);
-	
+
 	server.get('/close-auth', (req, res) => {
 		req.session.userId = "62b22cd668c09cdf2d01df38";
 		
