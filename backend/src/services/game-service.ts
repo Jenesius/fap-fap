@@ -77,6 +77,12 @@ export default class gameService {
 
 		return GameUser.aggregate([
 			{
+				$project: {
+					userId: 1,
+					current: userId
+				}
+			},
+			{
 				$lookup: {
 					from: 'game-matches',
 					let: {
@@ -101,16 +107,28 @@ export default class gameService {
 				$lookup: {
 					from: 'game-previous-matches',
 					let : {
-						currentUserId: "$userId"
+						currentUserId: "$userId",
+						current: "$current"
 					},
 					pipeline: [
 						{
 							$match: {
 								$expr: {
-									$or: [
-										{ $eq: ["$userX", "$$currentUserId"]},
-										{ $eq: ["$userY", "$$currentUserId"]}
+									$and: [
+										{
+											$or: [
+												{ $eq: ["$userX", "$$currentUserId"]},
+												{ $eq: ["$userY", "$$currentUserId"]}
+											]
+										},
+										{
+											$or: [
+												{ $eq: ["$userX", "$$current"]},
+												{ $eq: ["$userY", "$$current"]}
+											]
+										}
 									]
+
 								},
 							}
 						},

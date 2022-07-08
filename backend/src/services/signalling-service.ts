@@ -18,7 +18,11 @@ export default class signallingService {
 			userId,
 			socketId
 		})
-
+	}
+	static findByUserId(userId: string) {
+		return SignalConnection.findOne({
+			userId
+		})
 	}
 
 }

@@ -4,7 +4,7 @@ import gameService from "../services/game-service";
 const TestRoute = express.Router();
 
 TestRoute.post('/set-session', async (req, res, next) => {
-    const userId = Math.ceil(Math.random() * 1000);
+    const userId = Math.ceil(Math.random() * 1000000);
     req.session.userId = String(userId);
 
     res.json(req.session);

@@ -1,0 +1,27 @@
+.connection-status{
+	display: flex;
+	gap: 15px
+}
+.connection-status__label{
+	color: white;
+
+	margin: 0;
+}
+.partner-label {
+	color: white;
+}
+.partner-status {
+	color: gray;
+}
+.information-title{
+	color: white;
+	margin: 5px 0;
+}
+.information-list p{
+	margin: 2px;
+	font-size: 12px;
+	color: gray;
+}
+.information-list b{
+	color: white
+}
