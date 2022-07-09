@@ -12,7 +12,7 @@ import path from "path";
 export default function useRoute(server: Express) {
 	server.use(cors({
 		credentials: true,
-		origin: 'http://localhost',
+		origin: ['http://localhost', 'http://localhost:3001', 'https://jenesius.com'],
 	}))
 	server.use(bodyParser.json())
 	server.use(cookieParser());
@@ -34,9 +34,8 @@ export default function useRoute(server: Express) {
 	server.use('/auth', AuthRoute)
 
 	server.use('/test-api', TestRoute);
+	server.use('/api', authMiddleware, ApiRoute);
 
-	server.use(authMiddleware)
-	server.use('/api', ApiRoute);
 
 
 	server.get('/close-route', (req, res) => {
@@ -44,4 +43,12 @@ export default function useRoute(server: Express) {
 			good: 'yes'
 		})
 	})
+	server.get("*", (req, res) => {
+		res.sendFile(
+			path.join(
+				__dirname, '..', '..', 'frontend', 'index.html'
+			)
+		)
+	})
+
 }
