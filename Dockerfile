@@ -17,10 +17,18 @@ RUN npm run build
 
 FROM node:16
 WORKDIR /app
-COPY --from=back-builder /app/dist ./
+
+# COPY BACK_SERVER
+COPY --from=back-builder /app/dist/ ./dist
 COPY backend/package*.json ./
+COPY backend/.env ./
+
+# COPY FRONTEND
+RUN mkdir -p frontend
+COPY --from=front-builder /app/build/ ./frontend
+
 RUN npm i
 
 EXPOSE 3001
 
-CMD ["node", "app/backend/dist/app.js"]
+CMD ["node", "dist/app.js"]
