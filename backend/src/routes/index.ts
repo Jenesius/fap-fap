@@ -1,4 +1,4 @@
-import {Express} from "express";
+import express, {Express} from "express";
 import AuthRoute from "./auth-route";
 import cors from "cors";
 import bodyParser from "body-parser";
@@ -7,6 +7,7 @@ import authMiddleware from "./../middleware/auth-middleware";
 import sessionMiddleware from "./../middleware/session-middleware";
 import ApiRoute from "./api-route";
 import TestRoute from "./test-route";
+import path from "path";
 
 export default function useRoute(server: Express) {
 	server.use(cors({
@@ -16,6 +17,12 @@ export default function useRoute(server: Express) {
 	server.use(bodyParser.json())
 	server.use(cookieParser());
 	server.use(sessionMiddleware);
+
+	server.use(express.static(
+		path.join(
+			__dirname, '..', '..', 'frontend'
+		)
+	))
 
 	server.get('/close-auth', (req, res) => {
 		req.session.userId = "62b22cd668c09cdf2d01df38";
