@@ -9,6 +9,8 @@
     "node_modules"
   ],
   "compilerOptions": {
+    "noEmitOnError": true,
+    "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "skipDefaultLibCheck": true,
     // "incremental": true,                              /* Save .tsbuildinfo files to allow for incremental compilation of projects. */
