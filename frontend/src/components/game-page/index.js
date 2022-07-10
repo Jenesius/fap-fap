@@ -26,7 +26,7 @@ export default function GamePage() {
 	 * @description Function update session data.
 	 * */
 	function updateSession() {
-		return fetch('/api/test-api/set-session', {
+		return fetch('/test-api/set-session', {
 			method: 'post'
 		})
 		.then(r => r.json())

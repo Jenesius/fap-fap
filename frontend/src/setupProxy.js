@@ -11,5 +11,11 @@ module.exports = function(app) {
 			},
 		})
 	);
-
+	app.use(
+		'/test-api',
+		createProxyMiddleware({
+			target: 'http://localhost:3001',
+			changeOrigin: true,
+		})
+	);
 };

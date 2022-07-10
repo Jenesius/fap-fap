@@ -8,5 +8,9 @@ main()
 .catch(err => console.log(err));
 
 async function main() {
-	await mongoose.connect('mongodb://localhost:27017/fapfap');
+	const url = process.env.MONGO_URL ?
+		process.env.MONGO_URL :
+		'mongodb://localhost:27017';
+	console.log('Mongo url:', url);		
+	await mongoose.connect(url + '/fapfap');
 }

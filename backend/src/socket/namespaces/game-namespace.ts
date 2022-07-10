@@ -9,6 +9,7 @@ export default ((io: Namespace) => {
 
 		const userId = socket.request.session?.userId;
 		const socketId = socket.id;
+		console.log('Undefined user, disconect.');
 		if (!userId) return socket.disconnect();
 
 		console.log("Connect to game", userId)
