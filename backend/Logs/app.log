@@ -38,3 +38,13 @@
   level: 'info',
   timestamp: '2022-07-10T23:01:24.886Z'
 }
+{
+  message: 'MongoDB connecting mongodb://localhost:27017/fapfap',
+  level: 'info',
+  timestamp: '2022-07-10T23:02:05.150Z'
+}
+{
+  message: 'MongoDB was connected by mongodb://localhost:27017/fapfap',
+  level: 'info',
+  timestamp: '2022-07-10T23:02:05.458Z'
+}

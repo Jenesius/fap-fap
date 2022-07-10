@@ -12,7 +12,7 @@ import path from "path";
 export default function useRoute(server: Express) {
 	server.use(cors({
 		credentials: true,
-		origin: ['http://localhost', 'http://localhost:3001', 'https://jenesius.com'],
+		origin: ['http://localhost', 'http://localhost:3001', 'https://jenesius.com', 'http://62.109.17.203:3001'],
 	}))
 	server.use(bodyParser.json())
 	server.use(cookieParser());
