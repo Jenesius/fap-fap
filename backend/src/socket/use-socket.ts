@@ -19,7 +19,7 @@ const authSocketMiddleware = (req: Request, res: any, next: any) => {
 export default function useSocket(server: Server) {
 	const io = new SocketServer(server, {
 		cors: {
-			origin: ["http://localhost", "http://192.168.137.1"],
+			origin: ["http://localhost", "http://192.168.137.1", "http://62.109.17.203:3001"],
 			methods: ['GET', 'POST'],
 			credentials: true
 		},
