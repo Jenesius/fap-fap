@@ -1,0 +1,5 @@
+{
+  message: 'MongoDB was connected by mongodb://localhost:27017',
+  level: 'info',
+  timestamp: '2022-07-10T18:29:57.346Z'
+}

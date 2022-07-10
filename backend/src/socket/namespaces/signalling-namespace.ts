@@ -1,26 +1,25 @@
 import {Namespace} from "socket.io";
 import signallingService from "../../services/signalling-service";
+import winston from "winston";
+
 
 export default ((io: Namespace) => {
+	const logger = winston.loggers.get('signal');
 
 	io.on("connection", async (socket) => {
 
-		if (!socket.request.session?.userId) return socket.disconnect();
-
-		// @ts-ignore
-
-
 		const userId = socket.request.session.userId;
-		console.log('[signal] Connect user', userId);
+		logger.info(`User(${userId}) connected.`)
+
 		try {
 			await signallingService.addUser(userId, socket.id);
 		} catch (e ){
-			console.log(e)
+			logger.error(e);
+			return socket.disconnect();
 		}
 
 		// recipient - userId
 		socket.on('message', async (payload: {recipient: string}) => {
-
 
 			// Запомнили, кому отправляет сообщение
 			const clientId = payload.recipient;
@@ -37,9 +36,11 @@ export default ((io: Namespace) => {
 
 		socket.on("disconnect", async () => {
 			try {
-				console.log('[signal] Disconnect user', userId);
+				logger.info(`User(${userId}) disconnected.`)
 				await signallingService.removeUser(userId, socket.id);
-			} catch (e) {}
+			} catch (e) {
+				logger.error(e);
+			}
 		})
 
 	})

@@ -1,9 +1,13 @@
-// getting-started.js
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
+
+import winston from "winston";
+
 
 main()
-.then(() => {
-	console.log('Connected.')
+.then((url: string) => {
+	const logger = 	winston.loggers.get('app')
+
+	logger.info(`MongoDB was connected by ${url}`);
 })
 .catch(err => console.log(err));
 
@@ -11,6 +15,8 @@ async function main() {
 	const url = process.env.MONGO_URL ?
 		process.env.MONGO_URL :
 		'mongodb://localhost:27017';
-	console.log('Mongo url:', url);		
-	await mongoose.connect(url + '/fapfap');
+
+	await mongoose.connect(url + '/fapfap')
+
+	return url
 }
