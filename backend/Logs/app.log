@@ -3,3 +3,38 @@
   level: 'info',
   timestamp: '2022-07-10T18:29:57.346Z'
 }
+{
+  message: 'MongoDB was connected by mongodb://localhost:27017',
+  level: 'info',
+  timestamp: '2022-07-10T21:09:49.092Z'
+}
+{
+  message: 'MongoDB connecting mongodb://localhost:27017/fapfap',
+  level: 'info',
+  timestamp: '2022-07-10T23:00:19.634Z'
+}
+{
+  message: 'MongoDB was connected by mongodb://localhost:27017/fapfap',
+  level: 'info',
+  timestamp: '2022-07-10T23:00:19.886Z'
+}
+{
+  message: 'MongoDB connecting mongodb://localhost:27017/fapfap',
+  level: 'info',
+  timestamp: '2022-07-10T23:00:53.647Z'
+}
+{
+  message: 'MongoDB was connected by mongodb://localhost:27017/fapfap',
+  level: 'info',
+  timestamp: '2022-07-10T23:00:53.903Z'
+}
+{
+  message: 'MongoDB connecting mongodb://localhost:27017/fapfap',
+  level: 'info',
+  timestamp: '2022-07-10T23:01:24.636Z'
+}
+{
+  message: 'MongoDB was connected by mongodb://localhost:27017/fapfap',
+  level: 'info',
+  timestamp: '2022-07-10T23:01:24.886Z'
+}

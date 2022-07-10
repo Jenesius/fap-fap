@@ -2,6 +2,7 @@ import {format, transports, loggers} from "winston";
 import path from "path";
 
 
+
 loggers.add('signal', {
 	format: format.combine(
 		format.timestamp(),
@@ -31,6 +32,9 @@ loggers.add('app', {
 		new transports.File({filename: getFileName('app')})
 	]
 })
+
+
+
 /**
  * @description method for generate full fileName to Log`s file.
  * */
